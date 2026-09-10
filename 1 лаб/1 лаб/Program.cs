@@ -11,6 +11,21 @@ namespace _1_лаб
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.WriteLine("Введите строку в формате: Цена_топлива \"Тип\" гггг.мм.дд Цена");
+            string inputRow = Console.ReadLine();
+
+            try
+            {
+                FuelPrice fuelObject = FuelPrice.ParseFromString(inputRow);
+            
+                Console.WriteLine("\n[Успешно! Объект создан из вашего ввода]:");
+                fuelObject.Print();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\nОшибка разбора вашей строки: {ex.Message}");
+            }
+            Console.WriteLine("\n\nБЛОК 2: Запуск автоматического тестирования");
 
             List<string> testCases = new List<string>
             {
@@ -18,9 +33,6 @@ namespace _1_лаб
                 "Цена_топлива    \"ДТ_Зимнее\"    2026.12.15    65.25",
                 "Цена_топлива \"АИ-100\" 2026.05.20 72.00"
             };
-
-            Console.WriteLine("--- Запуск тестирования программы на C# ---");
-            Console.WriteLine();
 
             for (int i = 0; i < testCases.Count; i++)
             {
